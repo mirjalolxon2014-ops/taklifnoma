@@ -14,7 +14,9 @@
 
     body {
       font-family: 'Playfair Display', serif;
-      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+      background: linear-gradient(rgba(26, 26, 46, 0.85), rgba(22, 33, 62, 0.9)), 
+                  url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') no-repeat center center fixed;
+      background-size: cover;
       color: #fff;
       min-height: 100vh;
       display: flex;
@@ -229,26 +231,52 @@
       margin-top: 5px;
     }
 
+    /* Yangilangan joylashuv tugmasi */
     .map-btn {
-      background: linear-gradient(45deg, #4ecdc4, #44a08d);
+      background: linear-gradient(45deg, #ff6b6b, #ff9ff3);
       border: none;
-      padding: 12px 30px;
+      padding: 15px 35px;
       border-radius: 50px;
       color: white;
       cursor: pointer;
-      margin: 10px 0;
+      margin: 15px 0;
       transition: all 0.3s ease;
-      font-size: 1rem;
+      font-size: 1.1rem;
+      font-weight: bold;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
+      gap: 10px;
       margin: 0 auto;
+      box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+      position: relative;
+      overflow: hidden;
+      letter-spacing: 0.5px;
+    }
+
+    .map-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      transition: 0.5s;
     }
 
     .map-btn:hover {
       transform: translateY(-3px);
-      box-shadow: 0 8px 20px rgba(78, 205, 196, 0.5);
+      box-shadow: 0 8px 20px rgba(255, 107, 107, 0.6);
+    }
+
+    .map-btn:hover::before {
+      left: 100%;
+    }
+
+    .map-icon {
+      font-size: 1.3rem;
+      filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.5));
     }
 
     .back-btn {
@@ -355,6 +383,11 @@
       .countdown-number {
         font-size: 1.5rem;
       }
+      
+      .map-btn {
+        padding: 12px 25px;
+        font-size: 1rem;
+      }
     }
   </style>
 </head>
@@ -390,7 +423,7 @@
       </p>
       
       <div class="details">
-        <div class="date-time">📅 5-dekabr 2025-yil | 🕕 Soat 08:00</div>
+        <div class="date-time">📅 5-dekabr 2025-yil | 🕗 Soat 08:00</div>
         <div class="location">
           <span class="location-icon">📍</span> Beshkent shahri, Dilxush restorani
         </div>
@@ -398,8 +431,8 @@
       
       <div class="countdown" id="countdown"></div>
       
-    <button class="view-button" onclick="window.open('https://www.google.com/maps/place/%22Dilxush%22+to\'yxonasi/@38.8259414,65.6538733,17z/data=!3m1!4b1!4m6!3m5!1s0x3f4ebab0fbbbdbf7:0x6086645efab7ce47!8m2!3d38.8259414!4d65.6564482!16s%2Fg%2F11dyp0gmjc?entry=ttu&g_ep=EgoyMDI1MTEyMC4xIKXMDSoASAFQAw%3D%3D', '_blank')">
-        📍 Joylashuvni ko'rish
+      <button class="view-button" onclick="window.open('https://www.google.com/maps/place/%22Dilxush%22+to\'yxonasi/@38.8259414,65.6538733,17z/data=!3m1!4b1!4m6!3m5!1s0x3f4ebab0fbbbdbf7:0x6086645efab7ce47!8m2!3d38.8259414!4d65.6564482!16s%2Fg%2F11dyp0gmjc?entry=ttu&g_ep=EgoyMDI1MTEyMC4xIKXMDSoASAFQAw%3D%3D', '_blank')">
+         <span class="map-icon">📍</span> Joylashuvni ko'rish
       </button>
       
       <button class="back-btn" onclick="hideInvitation()">Ortga qaytish</button>
@@ -489,5 +522,4 @@
     }
   </script>
 </body>
-
 </html>
