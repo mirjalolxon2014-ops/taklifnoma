@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Taklifnoma - Mirjalolxon & Ozodaoy</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:wght@400;700&family=Great+Vibes&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Playfair Display', serif;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow-x: hidden;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 500px;
+      margin: 20px;
+    }
+
+    /* Asosiy sahifa */
+    .welcome-screen {
+      text-align: center;
+      padding: 30px;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      animation: fadeIn 1.5s ease-out;
+    }
+
+    .couple-names {
+      font-family: 'Dancing Script', cursive;
+      font-size: 3.5rem;
+      color: #ffd700;
+      margin-bottom: 20px;
+      text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+      position: relative;
+    }
+
+    .couple-names::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #ffd700, transparent);
+    }
+
+    .date {
+      font-size: 1.5rem;
+      margin: 20px 0;
+      color: #e6e6e6;
+      font-style: italic;
+    }
+
+    .open-btn {
+      background: linear-gradient(45deg, #ff6b6b, #ffd93d);
+      border: none;
+      padding: 15px 40px;
+      font-size: 1.2rem;
+      border-radius: 50px;
+      color: #1a1a2e;
+      cursor: pointer;
+      margin: 20px 0;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    .open-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(255, 107, 107, 0.6);
+    }
+
+    .music-btn {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 auto;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 1.2rem;
+    }
+
+    .music-btn:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: scale(1.1);
+    }
+
+    /* Taklifnoma sahifasi */
+    .invitation-card {
+      display: none;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%);
+      backdrop-filter: blur(15px);
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      animation: cardReveal 0.8s ease-out;
+    }
+
+    .invitation-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
+      z-index: -1;
+    }
+
+    .card-title {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.8rem;
+      color: #ffd700;
+      margin-bottom: 10px;
+      text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    }
+
+    .hearts {
+      font-size: 2rem;
+      margin: 15px 0;
+      color: #ff6b6b;
+      animation: heartbeat 1.5s infinite;
+    }
+
+    .couple-card {
+      font-family: 'Dancing Script', cursive;
+      font-size: 2.2rem;
+      margin: 20px 0;
+      color: #fff;
+    }
+
+    .groom {
+      color: #4ecdc4;
+    }
+
+    .bride {
+      color: #ff9ff3;
+    }
+
+    .ampersand {
+      font-size: 1.5rem;
+      margin: 0 10px;
+      color: #ffd700;
+    }
+
+    .invitation-text {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin: 20px 0;
+      color: #e6e6e6;
+      font-style: italic;
+    }
+
+    .details {
+      background: rgba(0, 0, 0, 0.3);
+      padding: 20px;
+      border-radius: 15px;
+      margin: 20px 0;
+      border-left: 4px solid #ffd700;
+    }
+
+    .date-time {
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+      color: #ffd700;
+    }
+
+    .location {
+      font-size: 1.1rem;
+      color: #e6e6e6;
+    }
+
+    .location-icon {
+      color: #ff6b6b;
+      margin-right: 8px;
+    }
+
+    .countdown {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin: 25px 0;
+    }
+
+    .countdown-item {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 15px 10px;
+      border-radius: 10px;
+      min-width: 70px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .countdown-number {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: #ffd700;
+    }
+
+    .countdown-label {
+      font-size: 0.8rem;
+      color: #b8b8b8;
+      margin-top: 5px;
+    }
+
+    .map-btn {
+      background: linear-gradient(45deg, #4ecdc4, #44a08d);
+      border: none;
+      padding: 12px 30px;
+      border-radius: 50px;
+      color: white;
+      cursor: pointer;
+      margin: 10px 0;
+      transition: all 0.3s ease;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin: 0 auto;
+    }
+
+    .map-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(78, 205, 196, 0.5);
+    }
+
+    .back-btn {
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      padding: 10px 25px;
+      border-radius: 50px;
+      color: #e6e6e6;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: all 0.3s ease;
+    }
+
+    .back-btn:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    /* Animatsiyalar */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes cardReveal {
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes heartbeat {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
+
+    .floating {
+      animation: float 5s ease-in-out infinite;
+    }
+
+    /* Dekorativ elementlar */
+    .decoration {
+      position: absolute;
+      font-size: 1.5rem;
+      opacity: 0.7;
+      z-index: -1;
+    }
+
+    .decoration-1 {
+      top: 10%;
+      left: 10%;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .decoration-2 {
+      top: 15%;
+      right: 10%;
+      animation: float 7s ease-in-out infinite;
+    }
+
+    .decoration-3 {
+      bottom: 15%;
+      left: 15%;
+      animation: float 8s ease-in-out infinite;
+    }
+
+    .decoration-4 {
+      bottom: 10%;
+      right: 15%;
+      animation: float 9s ease-in-out infinite;
+    }
+
+    /* Responsive dizayn */
+    @media (max-width: 600px) {
+      .container {
+        margin: 10px;
+      }
+      
+      .couple-names {
+        font-size: 2.8rem;
+      }
+      
+      .card-title {
+        font-size: 2.2rem;
+      }
+      
+      .couple-card {
+        font-size: 1.8rem;
+      }
+      
+      .countdown {
+        gap: 10px;
+      }
+      
+      .countdown-item {
+        min-width: 60px;
+        padding: 12px 8px;
+      }
+      
+      .countdown-number {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Asosiy sahifa -->
+    <div class="welcome-screen" id="welcomeScreen">
+      <div class="couple-names floating">Mirjalolxon & Ozodaoy</div>
+      <div class="date">05.12.2025</div>
+      <button class="open-btn" onclick="showInvitation()">Taklifnomani ochish</button>
+      <button class="music-btn" onclick="toggleMusic()" id="musicButton">🎵</button>
+    </div>
+
+    <!-- Taklifnoma sahifasi -->
+    <div class="invitation-card" id="invitationCard">
+      <!-- Dekorativ elementlar -->
+      <div class="decoration decoration-1">❀</div>
+      <div class="decoration decoration-2">✨</div>
+      <div class="decoration decoration-3">💫</div>
+      <div class="decoration decoration-4">🌸</div>
+      
+      <h1 class="card-title">Taklifnoma</h1>
+      <div class="hearts">💑</div>
+      
+      <div class="couple-card">
+        <span class="groom">Mirjalolxon</span>
+        <span class="ampersand">&</span>
+        <span class="bride">Ozodaoy</span>
+      </div>
+      
+      <p class="invitation-text">
+        Sizni hayotimizning quvonchli kuni, nikoh to'yimizga bag'ishlangan marosimning aziz mehmoni bo'lishga taklif qilamiz.
+      </p>
+      
+      <div class="details">
+        <div class="date-time">📅 5-dekabr 2025-yil | 🕕 Soat 08:00</div>
+        <div class="location">
+          <span class="location-icon">📍</span> Beshkent shahri, Dilxush restorani
+        </div>
+      </div>
+      
+      <div class="countdown" id="countdown"></div>
+      
+      <button class="map-btn" onclick="window.open('https://yandex.uz/maps/195170/beshkent/?ll=65.657539%2C38.826260&z=18.92', '_blank')">
+        📍 Joylashuvni ko'rish
+      </button>
+      
+      <button class="back-btn" onclick="hideInvitation()">Ortga qaytish</button>
+    </div>
+  </div>
+
+  <!-- Musiqa elementi -->
+  <audio id="weddingMusic" loop>
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3">
+    Sizning brauzeringiz audio elementni qo'llab-quvvatlamaydi.
+  </audio>
+
+  <script>
+    // Taklifnomani ko'rsatish
+    function showInvitation() {
+      document.getElementById('welcomeScreen').style.display = 'none';
+      document.getElementById('invitationCard').style.display = 'block';
+      startCountdown();
+    }
+
+    // Taklifnomani yashirish
+    function hideInvitation() {
+      document.getElementById('invitationCard').style.display = 'none';
+      document.getElementById('welcomeScreen').style.display = 'block';
+    }
+
+    // Countdown funksiyasi
+    function startCountdown() {
+      const weddingDate = new Date("December 05, 2025 08:00:00").getTime();
+      const countdownElement = document.getElementById('countdown');
+
+      function updateCountdown() {
+        const now = new Date().getTime();
+        const distance = weddingDate - now;
+
+        if (distance < 0) {
+          countdownElement.innerHTML = "<div style='font-size: 1.2rem; color: #ffd700;'>To'y boshlandi!</div>";
+          return;
+        }
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        countdownElement.innerHTML = `
+          <div class="countdown-item">
+            <div class="countdown-number">${days}</div>
+            <div class="countdown-label">Kun</div>
+          </div>
+          <div class="countdown-item">
+            <div class="countdown-number">${hours}</div>
+            <div class="countdown-label">Soat</div>
+          </div>
+          <div class="countdown-item">
+            <div class="countdown-number">${minutes}</div>
+            <div class="countdown-label">Daqiqa</div>
+          </div>
+          <div class="countdown-item">
+            <div class="countdown-number">${seconds}</div>
+            <div class="countdown-label">Soniya</div>
+          </div>
+        `;
+
+        setTimeout(updateCountdown, 1000);
+      }
+
+      updateCountdown();
+    }
+
+    // Musiqa boshqaruvi
+    const audio = document.getElementById('weddingMusic');
+    const musicButton = document.getElementById('musicButton');
+    let isPlaying = false;
+
+    function toggleMusic() {
+      if (isPlaying) {
+        audio.pause();
+        musicButton.textContent = '🎵';
+      } else {
+        audio.play().catch(() => {
+          alert('Musiqani ijro etishda xatolik yuz berdi. Iltimos, audio manbasini tekshiring.');
+        });
+        musicButton.textContent = '⏸️';
+      }
+      isPlaying = !isPlaying;
+    }
+  </script>
+</body>
+</html>
